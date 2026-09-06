@@ -689,6 +689,13 @@
 </head>
 <body>
 <main class="gps-app" id="gpsApp">
+  <!-- Banner de Invitación a Instalar -->
+<div id="pwa-install-banner" style="display: none; background-color: #134989; color: #ffffff; padding: 12px 16px; border-radius: 8px; margin: 15px 0; align-items: center; justify-content: space-between; font-family: sans-serif;">
+  <span style="font-size: 14px; font-weight: 500;">📱 ¡Instala la App de Monitoreo GPS en tu pantalla de inicio!</span>
+  <button id="pwa-install-btn" style="background-color: #ffffff; color: #134989; border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-left: 10px;">
+    Instalar
+  </button>
+</div>
   <div class="background-media" aria-hidden="true">
     <img class="video-poster" id="videoPoster" src="https://images.pexels.com/videos/17530622/4x4-adventure-dust-road-outdoor-adventure-17530622.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1080&w=1920" alt="Pickup blanca en acción" />
     <video class="background-video" id="backgroundVideo" autoplay muted loop playsinline preload="auto">
@@ -1234,6 +1241,7 @@ $('clearPlate').onclick = () => {
 };
 </script>
 <script>
+  // 1. Registro del Service Worker
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js')
@@ -1241,6 +1249,36 @@ $('clearPlate').onclick = () => {
         .catch(err => console.warn('Error al registrar el Service Worker', err));
     });
   }
+
+  // 2. Lógica de instalación de la PWA
+  let deferredPrompt;
+  const installBanner = document.getElementById('pwa-install-banner');
+  const installBtn = document.getElementById('pwa-install-btn');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (installBanner) {
+      installBanner.style.display = 'flex';
+    }
+  });
+
+  if (installBtn) {
+    installBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      installBanner.style.display = 'none';
+      deferredPrompt = null;
+    });
+  }
+
+  window.addEventListener('appinstalled', () => {
+    if (installBanner) {
+      installBanner.style.display = 'none';
+    }
+    deferredPrompt = null;
+  });
 </script>
 </body>
 </html>
