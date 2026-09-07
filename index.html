@@ -916,7 +916,7 @@
       <div class="gps-info" id="gpsInfo" hidden>
         <h3 id="gpsInfoTitle"></h3>
         <p class="gps-description" id="gpsDescriptionText"></p>
-        <p class="command-safety" id="commandSafety" hidden>Usa este comando solo con el vehículo detenido y en un lugar seguro.</p>
+        <p class="command-safety" id="commandSafety" hidden>Usa este comando solo en caso de emergencia.</p>
         <a id="sendMessageLink" class="send-btn" href="#">
           <span class="icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -959,7 +959,7 @@
       <div class="modal-eyebrow">COMANDO GPS</div>
       <h2 id="commandModalTitle"></h2>
       <p class="modal-description" id="commandModalDesc"></p>
-      <p class="command-safety" id="commandModalSafety" hidden>Usa este comando solo con el vehículo detenido y en un lugar seguro.</p>
+      <p class="command-safety" id="commandModalSafety" hidden>Usa este comando para encender el vehiculo de forma remota.</p>
       <a id="commandSendLink" class="send-btn" href="#">
         <span class="icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -1015,12 +1015,12 @@ const CONFIG = {
     "SZL196": "3194532601", "GRK038": "3009923731", "GRK717": "3008995188"
   },
   commands: [
-    { id: "position", label: "Ubicación actual", title: "UBICACION ACTUAL DEL VEHICULO", message: "POSITION#", description: "Con este comando puedes ver la ubicación en tiempo real de tu vehículo." },
+    { id: "position", label: "Ubicación actual", title: "UBICACION ACTUAL DEL VEHICULO", message: "URL#", description: "Con este comando puedes ver la ubicación en tiempo real de tu vehículo." },
     { id: "alarm", label: "Alarma", title: "ALARMA DEL VEHICULO", message: "acc123456", description: "Este comando configura la alarma." },
     { id: "off", label: "Apagar vehículo", title: "APAGAR EL VEHICULO", message: "RELAY,1#", description: "Este comando apaga el vehículo de manera remota." },
     { id: "on", label: "Encender vehículo", title: "ENCENDER EL VEHICULO", message: "RELAY,0#", description: "Este comando habilita el encendido del vehículo." },
     { id: "vibration", label: "Activar vibración", title: "ACTIVAR VIBRACION", message: "vibrate123456 1", description: "Activa sensor de vibración." },
-    { id: "status", label: "Estado actual", title: "ESTADO ACTUAL DEL VEHICULO", message: "check123456", description: "Verifica el estado general (batería, señal, encendido)." },
+    { id: "status", label: "Estado actual", title: "ESTADO ACTUAL DEL VEHICULO", message: "STATUS#", description: "Verifica el estado general (batería, señal, encendido)." },
     { id: "speed", label: "Alerta de velocidad", title: "ALERTA DE VELOCIDAD DEL VEHICULO", message: "speed123456 50", description: "Este comando establece una alerta por exceso de velocidad." }
   ],
   specialCommands: {
